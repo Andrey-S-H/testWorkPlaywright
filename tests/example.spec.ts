@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import TaskPage from '../pageObject/taskPage';
 
 const siteUrl = process.env.SITE_URL;
