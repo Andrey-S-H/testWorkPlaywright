@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write .",
-    "prepare": "husky",
+    "prepare": "husky install",
     "prettier:check": "prettier --check .",
     "test": "playwright test"
   },
