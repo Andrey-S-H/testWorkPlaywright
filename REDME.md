@@ -1,55 +1,64 @@
-# TodoMVC Playwright Automation
+# PlaywrightDemoOfTodoVC
 
-## 📌 Project Description
-
-Автоматизация CRUD‑функционала демо‑приложения **TodoMVC** с использованием **Playwright + TypeScript**.  
-Проект построен по **Page Object Model** и интегрирован с линтингом, форматированием, Husky‑хуками и CI через GitHub Actions.
-
----
-
-## 🛠 Tech Stack
-
-- **Playwright** v1.57.0
-- **TypeScript** v5+
-- **ESLint** (Flat Config)
-- **Prettier**
-- **Husky** (pre‑push hook)
-- **dotenv** (поддержка `.env`)
-- **GitHub Actions CI**
-- **Playwright HTML Reporter**
-
----
-
-## 🚀 Setup
+## 🚀 Установка проекта
 
 ```bash
-# Установка зависимостей
+git clone <repo-url>
+cd <project-folder>
 npm install
 
-# Установка браузеров Playwright
-npx playwright install
+После установки Husky автоматически активирует Git hooks благодаря скрипту "prepare": "husky install" в package.json.
 
-# Запуск всех тестов локально
-npm run test
 
-# Запуск с HTML-репортом (CI режим)
-npm run test:ci
+📦 Дополнительно установлено
+- env — управление окружением
+- prettier — автоформатирование кода
+- eslint (lint) — линтер с интеграцией Prettier
+- husky — Git hooks
 
-BASE_URL=https://demo.playwright.dev/todomvc/#/
+🧹 Команды
+- npm run lint — запуск линтера (включает проверку Prettier)
+- npm run test — запуск всех Playwright тестов
+- npm run prettier:check — проверка форматирования отдельно
+- npm run format — автоисправление форматирования
 
-baseURL: process.env.BASE_URL || 'https://demo.playwright.dev/todomvc/#/',
+Husky Hooks
+Файл: .husky/pre-push
+- При git push запускается линтер и тесты.
+- Линтер включает проверку Prettier.
+- Если есть ошибки → push блокируется.
+- Если всё чисто → push проходит.
 
-✅ Features
-- Page Object Model (pages/TodoPage.ts)
-- CRUD тест: создание, чтение, редактирование, удаление задачи (tests/test.spec.ts)
-- HTML‑репорт
-- Husky блокирует push при ошибках линтера
-- CI с GitHub Actions (.github/workflows/playwright.yml)
 
-📸 Example Results
-- Screenshots: сохраняются при падении тестов
-- Видео: сохраняется при падении тестов в test-results/
-- HTML Report: доступен в playwright-report/
+⚙️ CI/CD — GitHub Actions
+Файл: .github/workflows/playwright.yml
+Workflow делает следующее:
+- Запускается при push/PR в main/master.
+- Поднимает Ubuntu‑окружение с Node LTS.
+- Кэширует зависимости → ускоряет CI.
+- Ставит пакеты (npm ci).
+- Проверяет код линтером (npm run lint).
+- Ставит браузеры Playwright (npx playwright install --with-deps).
+- Гоняет тесты (npx playwright test).
+- Сохраняет отчёт (playwright-report/) и результаты тестов (test-results/) как артефакты.
+
+Артефакты тестов
+- playwright-report — HTML‑отчёт о тестах (хранится 30 дней).
+- test-results — скриншоты, видео и логи (хранятся 7 дней).
+
+🖥️ Настройки IDE
+Для VS Code:
+- Установи расширения ESLint и Prettier.
+- Включи автоформатирование:
+
+📂 Структура проекта
+- .husky/ — Git hooks (pre-push)
+- .github/workflows/ — CI/CD конфигурация
+- tests/ — Playwright тесты
+- playwright-report/ — отчёты тестов
+- test-results/ — результаты тестов (скриншоты, видео)
+- package.json — скрипты и зависимости
+- .eslintrc, .prettierrc — конфиги линтера и форматтера
 
 
 ```
