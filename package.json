@@ -1,14 +1,14 @@
 {
-  "name": "testworkplaywright",
+  "name": "playwrightdemooftodovc",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prepare": "husky install",
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write .",
-    "test": "playwright test",
-    "test:ci": "playwright test --reporter=html"
+    "prepare": "husky",
+    "prettier:check": "prettier --check .",
+    "test": "playwright test"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,12 @@
     "@typescript-eslint/eslint-plugin": "^8.53.1",
     "@typescript-eslint/parser": "^8.53.1",
     "eslint": "^9.39.2",
-    "husky": "^9.1.7"
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "husky": "^9.1.7",
+    "prettier": "^3.8.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
   }
 }
